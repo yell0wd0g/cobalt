@@ -140,7 +140,7 @@ CommandLinePreprocessor::CommandLinePreprocessor(int argc,
   // Override kContentShellHostWindowSize if the user sets kWindowSize.
   if (cmd_line_.HasSwitch(switches::kWindowSize)) {
     std::string window_size =
-        cmd_line_.GetSwitchValueASCII(::switches::kWindowSize);
+        cmd_line_.GetSwitchValueASCII(switches::kWindowSize);
     std::replace(window_size.begin(), window_size.end(), ',', 'x');
     cmd_line_.AppendSwitchASCII(::switches::kContentShellHostWindowSize,
                                 window_size);
