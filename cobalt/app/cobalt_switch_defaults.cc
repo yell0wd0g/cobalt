@@ -34,8 +34,8 @@ namespace {
 
 // List of toggleable default switches.
 static constexpr auto kCobaltToggleSwitches = std::to_array<const char*>({
-    // Enable Blink to work in overlay video mode
-    switches::kForceVideoOverlays,
+  // Enable Blink to work in overlay video mode
+  switches::kForceVideoOverlays,
       // Disable multiprocess mode.
       switches::kSingleProcess,
       // Hide content shell toolbar.
@@ -145,7 +145,6 @@ CommandLinePreprocessor::CommandLinePreprocessor(int argc,
     cmd_line_.AppendSwitchASCII(::switches::kContentShellHostWindowSize,
                                 window_size);
   }
-
 
   // Any remaining parameter switches are set to their defaults.
   for (const auto& iter : cobalt_param_switch_defaults) {
