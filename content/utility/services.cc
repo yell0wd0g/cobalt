@@ -376,6 +376,7 @@ void RegisterIOThreadServices(mojo::ServiceFactory& services) {
 }
 
 void RegisterMainThreadServices(mojo::ServiceFactory& services) {
+#if !BUILDFLAG(IS_COBALT)
   services.Add(RunAuctionWorkletService);
   services.Add(RunAudio);
 
@@ -383,7 +384,8 @@ void RegisterMainThreadServices(mojo::ServiceFactory& services) {
   services.Add(RunStorageService);
   services.Add(RunTracing);
   services.Add(RunVideoCapture);
-
+#endif
+    
 #if BUILDFLAG(GOOGLE_CHROME_BRANDING) && BUILDFLAG(IS_CHROMEOS)
   services.Add(RunShapeDetectionService);
 #endif
@@ -412,10 +414,12 @@ void RegisterMainThreadServices(mojo::ServiceFactory& services) {
 #endif  // (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_ASH)) &&
         // (BUILDFLAG(USE_VAAPI) || BUILDFLAG(USE_V4L2_CODEC))
 
+#if !BUILDFLAG(IS_COBALT)
 #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
   services.Add(RunVideoEncodeAcceleratorProviderFactory);
 #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-
+#endif
+    
 #if BUILDFLAG(ENABLE_ACCESSIBILITY_SERVICE)
   if (::features::IsAccessibilityServiceEnabled())
     services.Add(RunAccessibilityService);
