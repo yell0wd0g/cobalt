@@ -244,9 +244,9 @@ test("nplb") {
     "drm_is_server_certificate_updatable_test.cc",
     "drm_session_test.cc",
     "drm_update_server_certificate_test.cc",
-    "maximum_player_configuration_explorer_test.cc",
     "maximum_player_configuration_explorer.cc",
     "maximum_player_configuration_explorer.h",
+    "maximum_player_configuration_explorer_test.cc",
 
     # TODO: Separate functions tested by media buffer test into multiple
     # files.
@@ -261,18 +261,16 @@ test("nplb") {
     "player_get_audio_configuration_test.cc",
     "player_get_media_time_test.cc",
     "player_get_preferred_output_mode_test.cc",
-    "player_test_util.cc",
-    "player_test_util.h",
     "player_test_fixture.cc",
     "player_test_fixture.h",
+    "player_test_util.cc",
+    "player_test_util.h",
     "player_write_sample_test.cc",
     "vertical_video_test.cc",
   ]
 
   sources = [ "//starboard/common/test_main.cc" ]
   sources += generic_sources
-  # All Starboard platforms build and use the media stack, so NPLB should cover
-  # those at a minimum.
   sources += media_sources
 
   if (is_androidtv) {
