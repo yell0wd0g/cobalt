@@ -60,7 +60,10 @@ static constexpr auto kCobaltToggleSwitches = std::to_array<const char*>({
       // saving goodies but can degrade the experience considerably. One of the
       // known regressions is 4444 textures, which are then disabled explicitly.
       switches::kEnableLowEndDeviceMode,
-      blink::switches::kDisableRGBA4444Textures,
+      // Cobalt doesn't use Chrome's accelerated video decoding/encoding.
+      blink::switches::kDisableRGBA4444Textures, 
+      swiches::kDisableAcceleratedVideoDecode,
+      swiches::kDisableAcceleratedVideoEncode,
 });
 
 // Map of switches with parameters and their defaults.
