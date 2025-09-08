@@ -225,26 +225,28 @@ void UserAgentPlatformInfo::InitializePlatformDependentFieldsAndroid() {
   set_model_year(ModelYear());
   set_brand(Brand());
   set_device_type("ATV");
-  auto platform_info_extension =
-      static_cast<const CobaltExtensionPlatformInfoApi*>(
-          SbSystemGetExtension(kCobaltExtensionPlatformInfoName));
-  if (platform_info_extension) {
-    if (platform_info_extension->version >= 1) {
-      char build_fingerprint[1024];
-      if (platform_info_extension->GetFirmwareVersionDetails(build_fingerprint,
-                                                             1024)) {
-        set_android_build_fingerprint(build_fingerprint);
-      }
-      set_android_os_experience(platform_info_extension->GetOsExperience());
-    }
-    if (platform_info_extension->version >= 2) {
-      int64_t ver = platform_info_extension->GetCoreServicesVersion();
-      if (ver != 0) {
-        std::string sver = std::to_string(ver);
-        set_android_play_services_version(sver);
-      }
-    }
-  }
+
+  // TODO(b/436368441): SbSystemGetExtension() crashes on AndroidTV tests.
+  //auto platform_info_extension =
+  //    static_cast<const CobaltExtensionPlatformInfoApi*>(
+  //        SbSystemGetExtension(kCobaltExtensionPlatformInfoName));
+  //if (platform_info_extension) {
+  //  if (platform_info_extension->version >= 1) {
+  //    char build_fingerprint[1024];
+  //    if (platform_info_extension->GetFirmwareVersionDetails(build_fingerprint,
+  //                                                           1024)) {
+  //      set_android_build_fingerprint(build_fingerprint);
+  //    }
+  //    set_android_os_experience(platform_info_extension->GetOsExperience());
+  //  }
+  //  if (platform_info_extension->version >= 2) {
+  //    int64_t ver = platform_info_extension->GetCoreServicesVersion();
+  //    if (ver != 0) {
+  //      std::string sver = std::to_string(ver);
+  //      set_android_play_services_version(sver);
+  //    }
+  //  }
+  //}
 }
 #elif BUILDFLAG(IS_STARBOARD)
 void UserAgentPlatformInfo::InitializePlatformDependentFieldsStarboard() {
@@ -292,12 +294,13 @@ void UserAgentPlatformInfo::Initialize() {
   // Below UA info fields can NOT be retrieved directly from platform's native
   // system properties.
 
-  char value[1024];
-  bool result =
-      SbSystemGetProperty(kSbSystemPropertyUserAgentAuxField, value, 1024);
-  if (result) {
-    set_aux_field(value);
-  }
+  // TODO(b/436368441): SbSystemGetProperty() crashes on AndroidTV tests.
+  //char value[1024];
+  //bool result =
+  //    SbSystemGetProperty(kSbSystemPropertyUserAgentAuxField, value, 1024);
+  //if (result) {
+  //  set_aux_field(value);
+  //}
 
   // We only support JIT for both Linux and Android.
   set_javascript_engine_version(

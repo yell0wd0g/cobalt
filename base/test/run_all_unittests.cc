@@ -18,6 +18,8 @@
 #include "starboard/client_porting/wrap_main/wrap_main.h"
 #endif  // BUILDFLAG(IS_COBALT_HERMETIC_BUILD)
 
+#include "base/android/jni_android.h"
+
 namespace base {
 
 namespace {

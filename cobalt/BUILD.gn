@@ -223,6 +223,11 @@ test("cobalt_unittests") {
     "//sandbox/policy:policy",
   ]
 
+
+  if (is_android) {
+    deps += [ "//starboard/android/shared:starboard_platform" ]
+  }
+
   if (use_ozone) {
     deps += [ "//ui/ozone:ozone_switches" ]
   }

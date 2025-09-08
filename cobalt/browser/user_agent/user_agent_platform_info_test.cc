@@ -52,15 +52,7 @@ UserAgentPlatformInfo CreateOnlyOSNameAndVersionPlatformInfo() {
   return platform_info;
 }
 
-class UserAgentStringTest : public testing::Test {
- public:
-  void SetUp() override {
-#if BUILDFLAG(IS_ANDROID)
-    // TODO(b/436368441): Investigate this test failure.
-    GTEST_SKIP() << "Tests disabled on Android";
-#endif
-  }
-};
+class UserAgentStringTest : public testing::Test {};
 
 TEST_F(UserAgentStringTest, StartsWithMozilla) {
   std::string user_agent_string =
